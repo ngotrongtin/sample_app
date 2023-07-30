@@ -7,7 +7,7 @@ ruby '3.0.2'
 gem 'rails', '~> 6.0.6', '>= 6.0.6.1'
 # create clone users
 gem 'faker', '~> 3.2'
-
+gem 'active_storage_validations', '0.8.2'
 gem 'will_paginate', '~> 3.3.0'
 gem 'bootstrap-will_paginate', '1.0.0'
 
@@ -29,8 +29,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass', '3.4.1'
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
-
+gem 'image_processing', '~> 1.2'
+gem 'mini_magick', '4.9.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 

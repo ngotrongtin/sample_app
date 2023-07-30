@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
   def show 
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def create
@@ -50,6 +51,20 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
@@ -59,14 +74,6 @@ class UsersController < ApplicationController
     redirect_to root_path unless current_user.admin?
   end
 
-  #check if a user is logged or not, if not, redirect to the login path
-  def logged_in_user
-    unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-    end
-  end
 
   # if current_user try to change the other is not permit
   def correct_user
